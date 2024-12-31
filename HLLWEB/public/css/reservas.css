@@ -1,0 +1,291 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espacia los elementos de forma uniforme */
+    background-color: #47B444;
+    color: #FFF;
+    padding: 2px 0 2px 0;
+    /*STICKY HEADER FIJO*/
+    position: sticky;   
+    top: 0; 
+    z-index: 1000;
+}
+
+footer {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around; /* Espacia los elementos de forma uniforme */
+    background-color: #47B444;
+    color: #FFF;
+    gap: 20%;
+    text-decoration: none;
+}
+
+footer a {
+    text-decoration: none; /* Elimina la decoración del enlace */
+    color: inherit; /* Opcional: Hereda el color del contenedor principal */
+    
+}
+
+footer img{
+    width: 25px;
+    height: 25px;
+}
+
+.ubi, .cel{
+    width: auto;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    text-decoration: none;
+}
+
+footer p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+.logo-container{
+    width: 70px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius:15px;
+    position: relative;
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    border: 2px solid #FFF; /* Color y grosor del borde animado */
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+    transform: translate(-50%, -50%);
+    opacity: 0%;
+}
+
+.logo-container:hover::after {
+    width: 60px; /* Tamaño del borde al pasar el cursor */
+    height: 60px; /* Tamaño del borde al pasar el cursor */
+    top: 50%;
+    left: 50%;
+    opacity: 100%;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #FFF;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%; /* Inicia en el centro */
+    right: 50%; /* Inicia en el centro */
+    bottom: 0;
+    height: 2px;
+    background-color: #FFF;
+    transition: left 0.3s ease, right 0.3s ease; /* Animación para que se expanda */
+}
+
+nav a:hover::after {
+    left: 0; /* Expande hacia la izquierda */
+    right: 0; /* Expande hacia la derecha */
+}
+
+
+
+
+
+
+
+
+/*CONSULTA*/
+
+.consulta {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.datos {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.datos > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #47B444;
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px 10px;
+    height: 50px;
+    
+    width: calc(25% - 10px); /* Dividen el espacio para 4 columnas */
+    width: 220px;
+    box-sizing: border-box;
+}
+
+.datos img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.datos label {
+    flex: 1;
+    font-size: 12px;
+}
+
+.datos input {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 75px;
+    font-size: 12px;
+}
+
+#fechaIngreso, #fechaSalida{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 95px;
+    font-size: 12px;
+}
+
+.personas {
+    position: relative;
+}
+
+#flecha{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.lista {
+    display: none;
+    position: absolute;
+    top: calc(100% + 3px); /* Se coloca debajo del div "personas" */
+    left: 0;
+    background-color: #47B444;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 200px; /* Misma anchura que el div padre */
+    z-index: 10;
+}
+
+.lista ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista li {
+    margin: 5px 0;
+}
+
+.lista input {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    font-size: 12px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1; /* Siempre visibles */
+    pointer-events: auto; /* Asegura la interacción */
+}
+
+.condicion p {
+    font-size: 12px;
+    margin: 0;
+    color: #eeeeee;
+}
+
+
+#niños{
+    margin-left: 11px;
+}
+
+
+/*BOTON CONSULTAR*/
+
+.boton-consultar {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;    /* Centrar verticalmente */
+    margin-top: 30px;       /* Separación con la sección anterior */
+    width: 100%;            /* Ocupar toda la fila */
+}
+
+.boton-consultar button {
+    width: 200px;
+    height: 40px;
+    background-color: #47B444;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-consultar button:hover {
+    background-color: #3a9139;
+}
+
+.boton-consultar button:active {
+    background-color: #2f752e;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡RESERVA!</title>
+    <link rel="stylesheet" href="/public/css/reservas.css">
+</head>
+<body>
+    
+    <header>
+        <div class="logo-container" onmouseover="showTooltip(event)" onmousemove="moveTooltip(event)"
+            onmouseout="hideTooltip()">
+            <img src="/public/img/images (1).jpg" alt="Logo" class="logo" />
+        </div>
+        <nav>
+            <a href="/index.html">Inicio</a>
+            <a href="/reservas.html">Reservas</a>
+            <a href="https://agendasregionales.uniminuto.edu/corredor-ecologico-de-villavicencio/" target="_blank">Ubicación</a>
+            <a href="https://agendasregionales.uniminuto.edu/corredor-ecologico-de-villavicencio/" target="_blank">Contáctanos</a>
+        </nav>
+        <div class="right-logo-container">
+            <!-- <img src="/public/img/images (1).jpg" alt="Right Logo" class="right-logo" /> -->
+        </div>
+    </header>
+
+
+    <section class="consulta">
+        <div class="datos">
+            <div class="checkin" id="fecha">
+                <img src="/public/img/icons/calendario.png" alt="">
+                <label for="checkin">Fecha de Ingreso</label>
+                <input type="date" name="checkin" id="fechaIngreso">
+            </div>
+            <div class="checkout" id="fecha">
+                <img src="/public/img/icons/calendario.png" alt="">
+                <label for="checkin">Fecha de Salida</label>
+                <input type="date" name="checkout" id="fechaSalida">
+            </div>
+            <div class="habitaciones">
+                <img src="/public/img/icons/cama.png" alt="">
+                <label for="habitaciones">Cantidad de Habitaciones</label>
+                <input type="number" name="habitaciones" id="habitaciones" value="1" step="1" min="1">
+            </div>
+            <div class="personas">
+                <img src="/public/img/icons/familia.png" alt="">
+                <label for="lista-personas">Cantidad de Personas</label>
+                <img id="flecha" src="/public/img/icons/flecha-hacia-abajo.png" alt="">
+                <div class="lista">
+                    <ul class="lista-personas">
+                        <li class="adultos">Adultos: <input type="number" name="adultos" id="adultos" value="1" step="1" min="1"></li>
+                        <li class="niños">*Niños: <input type="number" name="niños" id="niños" value="0" step="1" min="0"></li>
+                        <li class="condicion"><p>*Se considera niño a todo menor de 6 años</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="boton-consultar">
+            <button id="consultar">Consultar</button>
+        </div>
+    </section>
+    <script>
+        const personasDiv = document.querySelector('.personas');
+        const listaDiv = personasDiv.querySelector('.lista');
+
+        personasDiv.addEventListener('click', function (event) {
+            // Verifica si el clic ocurrió dentro del div `.lista`
+            if (!listaDiv.contains(event.target)) {
+                listaDiv.style.display = listaDiv.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+
+        listaDiv.addEventListener('click', function (event) {
+            // Evita que el clic dentro de `.lista` oculte el desplegable
+            event.stopPropagation();
+        });
+    </script>
+
+    <script>
+        // Obtener la fecha actual en formato YYYY-MM-DD
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0]; // Convertir a formato ISO y extraer la parte de la fecha
+
+        // Seleccionar los inputs de fecha
+        const fechaIngreso = document.getElementById('fechaIngreso');
+        const fechaSalida = document.getElementById('fechaSalida');
+
+        // Establecer el atributo min
+        fechaIngreso.min = formattedDate;
+        fechaSalida.min = formattedDate;
+
+        // Opcional: Validar en tiempo real si la fecha de salida es anterior a la de ingreso
+        fechaIngreso.addEventListener('change', () => {
+            if (fechaSalida.value && fechaSalida.value < fechaIngreso.value) {
+                fechaSalida.value = fechaIngreso.value; // Ajustar la fecha de salida si es menor
+            }
+            fechaSalida.min = fechaIngreso.value; // Actualizar el mínimo para la fecha de salida
+        });
+
+    </script>
+
+
+</body>
+</html>
